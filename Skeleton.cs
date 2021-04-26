@@ -9,21 +9,27 @@ namespace ProtoFramework
     }
     public interface ITile : ILocatable
     {
+        public IEnumerable<IFeature> Features{get;}
     }
     public interface IEntity : ILocatable
     {
+        public IEnumerable<IFeature> Features{get;}
+        public IEnumerable<IAction> Actions{get;}
     }
-    public interface IMap
+    public interface IFeature
+    {
+    }
+    public interface IAction
+    {
+    }
+    public interface IWorld
     {
         public int Width{get;}
         public int Height{get;}
         public int Depth{get;}
         public IEnumerable<ITile> Tiles{get;}
-        public ITile Tile(ILocatable location);
-    }
-    public interface IWorld
-    {
-        public IMap Map{get;}
+        public IEnumerable<IEntity> Entities{get;}
+        public IEnumerable<ILocatable> Get<ILocatable>(Coordinates location);
     }
     public class Coordinates : IEquatable<Coordinates>
     {
